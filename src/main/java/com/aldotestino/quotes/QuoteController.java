@@ -26,6 +26,11 @@ public class QuoteController {
     quoteService.addQuote(quote);
   }
 
+  @GetMapping(path = "random")
+  public Quote getRandomQuote() {
+    return quoteService.getRandomQuote();
+  }
+
   @GetMapping(path = "{author}")
   public List<Quote> getQuoteByAuthor(@PathVariable("author") String author) {
     return quoteService.getQuoteByAuthor(author);

@@ -8,6 +8,14 @@ services:
     depends_on:
       - db
     container_name: quotes-server
+  
+  client:
+    build: ./client
+    ports: 
+      - "3000:3000"
+    depends_on: 
+      - server
+    container_name: quotes-client
 
   db:
     image: mongo:4

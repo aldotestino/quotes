@@ -30,6 +30,10 @@ public class QuoteService {
     return quotes.get(rand.nextInt(quotes.size()));
   }
 
+  public void removeQuote(String id) {
+    quoteRepository.deleteById(id);
+  }
+
   public List<Quote> getQuoteByAuthor(String author) {
     return quoteRepository.findByAuthor(author);
   }

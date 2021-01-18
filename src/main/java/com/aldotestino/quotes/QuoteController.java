@@ -32,8 +32,14 @@ public class QuoteController {
     return quoteService.getRandomQuote();
   }
 
+  @DeleteMapping(path = "{id}")
+  public void removeQuote(@PathVariable("id") String id) {
+    quoteService.removeQuote(id);
+  }
+
   @GetMapping(path = "{author}")
   public List<Quote> getQuoteByAuthor(@PathVariable("author") String author) {
     return quoteService.getQuoteByAuthor(author);
   }
+
 }

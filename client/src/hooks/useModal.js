@@ -6,10 +6,12 @@ function useModal() {
     });
 
     function onOpen() {
+        document.body.style.overflowY = 'hidden';
         state.isOpen = true;
     }
 
     function onClose() {
+        document.body.style.overflowY = 'auto';
         state.isOpen = false;
     }
 

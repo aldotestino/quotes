@@ -63,7 +63,8 @@ export default {
 
 <style scoped lang="scss">
 .background {
-  position: absolute;
+  position: fixed;
+  z-index: 2;
   top: 0;
   left: 0;
   width: 100%;
@@ -73,6 +74,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow-y: hidden;
 }
 
 .modal {
@@ -97,6 +99,9 @@ export default {
   .modal-close {
     height: 38px;
     width: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 

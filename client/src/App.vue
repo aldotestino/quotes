@@ -8,7 +8,7 @@
           <input type="text" v-model="query" placeholder="Search quotes">
         </div>
       </form>
-      <button @click="onOpen">
+      <button class="add-button" @click="onOpen">
         <i class="fas fa-plus"></i>
       </button>
     </div>
@@ -81,7 +81,7 @@ body {
   background-color: rgba(#2D3748, 0.8);
   backdrop-filter: blur(5px);
   box-shadow: 0 10px 20px rgba(#000, 0.2);
-  z-index: 10;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -92,9 +92,12 @@ body {
     align-items: center;
     justify-content: space-around;
 
-    button {
+    .add-button {
       height: 38px;
       width: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .input-container {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      <button @click="removeQuote"><i class="fas fa-trash"></i></button>
+      <button class="delete-button" @click="removeQuote"><i class="fas fa-trash"></i></button>
       <h1>{{quote.author}}</h1>
     </header>
     <p>{{quote.content}}</p>
@@ -48,10 +48,13 @@ div {
     display: flex;
     align-items: center;
 
-    button {
+    .delete-button {
       height: 38px;
       width: 38px;
       margin-right: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 

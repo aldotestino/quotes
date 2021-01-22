@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <header>
-      <button class="delete-button" @click="removeQuote"><i class="fas fa-trash"></i></button>
+  <div class="quote">
+    <header class="quote-header">
+      <button class="quote-delete__button" @click="removeQuote"><i class="fas fa-trash"></i></button>
       <h1>{{quote.author}}</h1>
     </header>
     <p>{{quote.content}}</p>
@@ -38,17 +38,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
-div {
+.quote {
   color: white;
   font-family: 'Roboto', sans-serif;
 
-  header {
+  .quote-header {
     padding: 0;
     margin-bottom: 10px;
     display: flex;
     align-items: center;
 
-    .delete-button {
+    .quote-delete__button {
       height: 38px;
       width: 38px;
       margin-right: 20px;

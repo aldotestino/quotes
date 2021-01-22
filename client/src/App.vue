@@ -175,11 +175,11 @@ button {
 }
 
 @media screen and (max-width: 1600px) {
-  header {
-    padding: 10px 150px;
+  .navbar {
+    padding: 10px 200px;
   }
   main {
-    padding: 30px 150px;
+    padding: 30px 200px;
   }
 }
 

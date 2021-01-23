@@ -5,7 +5,7 @@
       <form @submit.prevent="handleSearch">
         <div class="input-container">
           <i class="fas fa-search"></i>
-          <input type="text" v-model="query" placeholder="Search quotes">
+          <input type="text" v-model="query.current" placeholder="Search quotes">
         </div>
       </form>
       <button class="add-button" @click="onOpen">
@@ -13,8 +13,12 @@
       </button>
     </div>
   </header>
-  <main v-if="state.quotes">
+  <main v-if="state.quotes.length !== 0 && !state.loading">
     <Quote v-for="quote in state.quotes" :quote="quote" :key="quote.id"></Quote>
+  </main>
+  <main v-else-if="!state.loading" class="no-quotes">
+    <h1>No results for "{{query.last}}" 😢</h1>
+    <button @click="getQuotes">Get all quotes</button>
   </main>
   <transition name="fade">
       <QuoteForm v-if="modalState.isOpen" :onClose="onClose"></QuoteForm>
@@ -24,7 +28,7 @@
 <script>
 import Quote from "@/components/Quote";
 import QuoteForm from "@/components/QuoteForm";
-import {onMounted, ref} from 'vue';
+import {onMounted, reactive} from 'vue';
 import useModal from "@/hooks/useModal";
 import {state, getQuotes, searchQuotes,getRandomQuote} from "@/store";
 
@@ -36,7 +40,10 @@ export default {
   },
   setup() {
 
-    const query = ref('');
+    const query = reactive({
+      current: '',
+      last: ''
+    });
 
     const {state: modalState, onOpen, onClose} = useModal();
 
@@ -45,11 +52,12 @@ export default {
     });
 
     async function handleSearch() {
-      if(query.value === '') {
+      if(query.current === '') {
         await getQuotes();
       }
-      await searchQuotes(query.value);
-      query.value = '';
+      await searchQuotes(query.current);
+      query.last = query.current;
+      query.current = '';
     }
 
     return {
@@ -58,7 +66,8 @@ export default {
       onOpen,
       onClose,
       query,
-      handleSearch
+      handleSearch,
+      getQuotes,
     }
   }
 }
@@ -144,6 +153,15 @@ body {
     font-size: 32px;
     text-decoration: none;
   }
+}
+
+.no-quotes {
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 main {

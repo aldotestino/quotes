@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class QuoteService {
@@ -35,6 +36,10 @@ public class QuoteService {
   }
 
   public List<Quote> getQuoteByAuthor(String author) {
-    return quoteRepository.findByAuthor(author);
+    return quoteRepository
+      .findAll()
+      .stream()
+      .filter(q -> q.getAuthor().toLowerCase().contains(author.toLowerCase()))
+      .collect(Collectors.toList());
   }
 }
